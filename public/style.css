@@ -64,6 +64,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 12px 24px;
+  cursor: pointer;
   transition: all 0.15s linear;
   box-shadow: 0 7px 7px #5863f80f, 0 4.53704px 4.09954px #5863f80c,
     0 2.6963px 2.22963px #5863f809, 0 1.4px 1.1375px #5863f808,
