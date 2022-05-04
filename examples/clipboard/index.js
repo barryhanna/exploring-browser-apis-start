@@ -6,3 +6,14 @@ copy_button.addEventListener('click', async () => {
   await navigator.clipboard.writeText(value);
   alert(`Copied ${value} to clipboard`);
 });
+
+const paste_input = document.getElementById('paste-input');
+const paste_button = document.getElementById('paste');
+
+if ('readText' in navigator.clipboard) {
+  paste_button.disabled = false;
+}
+paste_button.addEventListener('click', async () => {
+  const value = await navigator.clipboard.readText();
+  paste_input.value = value;
+});
