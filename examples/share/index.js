@@ -1,4 +1,6 @@
 const share_button = document.getElementById('share');
+const share_link = document.getElementById('share-link');
+const text = document.getElementById('text');
 
 if ('share' in navigator) {
   share_button.disabled = false;
@@ -7,10 +9,9 @@ if ('share' in navigator) {
 }
 
 share_button.addEventListener('click', async () => {
-  const text = document.getElementById('text').value;
   const shareData = {
     title: 'Shared from Level Up',
-    text,
+    text: text.value,
     url: 'https://leveluptutorials.com',
   };
   await navigator.share(shareData);
@@ -42,3 +43,19 @@ console.log(`Is Mobile Size? ${isMobileSize}`);
 
 const isTouch = 'ontouchstart' in document.documentElement;
 console.log(`isTouch? ${isTouch}`);
+
+if ('share' in navigator) {
+  if (isMobileAgent && isMobileSize && isTouch) {
+    share_button.disabled = false;
+    share_link.style.display = 'none';
+  } else {
+    initialiseFallback();
+  }
+} else {
+  initialiseFallback();
+}
+
+function initialiseFallback() {
+  share_button.style.display = 'none';
+  share_link.href = `https://twitter.com/share?url=${window.location.href}&text=${text.value}`;
+}
