@@ -15,3 +15,30 @@ share_button.addEventListener('click', async () => {
   };
   await navigator.share(shareData);
 });
+
+let isMobileAgent;
+
+if (
+  /Android|webOS|iPhone|iPad|Blackberry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  ) ||
+  /Android|webOS|iPhone|iPad|Blackberry|IEMobile|Opera Mini/i.test(
+    navigator.platform
+  )
+) {
+  isMobileAgent = true;
+} else {
+  isMobileAgent = false;
+}
+
+share_button.innerText = isMobileAgent;
+console.log(`Is Mobile? ${isMobileAgent}`);
+
+const isMobileSize = window.matchMedia(
+  'only screen and (max-width: 760px'
+).matches;
+
+console.log(`Is Mobile Size? ${isMobileSize}`);
+
+const isTouch = 'ontouchstart' in document.documentElement;
+console.log(`isTouch? ${isTouch}`);
